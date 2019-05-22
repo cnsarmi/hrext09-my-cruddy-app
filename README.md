@@ -14,17 +14,18 @@ Create Read Update and Delete framework using JS
 - [ ] Item that I added goes here...
 
 Notes:
-- Create an app that will recommend vacation plans depending on the budget, length, destination, and departure location inputs.
+- Create an app that you can store vacation plans and mark them as completed when done
 
 Players {
-	The person wanting to go on vacation
-	Flights
-	Hotels
-	Transporation
+	People going on vacation
+	Where you want to go
+	Date
+	What you want to do there
+	Is it completed
 }
 
 - Potential names {
-    Your Getaway
+    Your Getaway Checklist
     My Vacation
     Your Vacation
     Your Vacation, Your Way
@@ -32,13 +33,13 @@ Players {
 }
 
 - Where to store data?
-	- Data will consist of cities, average flight costs from any point x to point y, hotel costs, popular points of interests in desired destination, total costs for entire vacation.
+	- Data will consist of vacation plans that will be stored into the localStorage
 
 - How to capture data?
-	- Store costs of flights, hotels, and transportation of flights, hotels, and transportation of each city.
+	- Forms will be on the browser where you can input the different details of your vacation plan
 
 - How to modify data?
-	- Update flights/hotel costs of cities during different times of the year
+	- You can update your vacation plans by click on the specific vacation
 
 - How to view data?
 	- Displays a vacation plan of how long vacation will be, flight details, hotel details, and transportation costs

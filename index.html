@@ -10,12 +10,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
 </head>
 <body>
-  <form>
-    <input id="keyInput" type="text" placeholder="key"></input>
-    <input id="valueInput" type="text" placeholder="value"></input>
-    <button id="createButton" type='submit'>Create</button>
-    <button id="updateButton" type='submit'>Update</button>
-  </form>
-  <script src='app/app.js'></script>
+  <div class="header">
+    <h1>Vacation Checklist</h1>
+  </div>
+  <div class="formContainer">
+    <form class="vacationPlan">
+      <h4>What are you vacation details?</h4>
+      <input class="vacayDetails" id="peopleInput" type="number" placeholder="How many people?"></input>
+      <input class="vacayDetails" id="dateInput" type="text" placeholder="date (MM-DD-YYYY)"></input>
+      <input class="vacayDetails" id="locationInput" type="text" placeholder="Where are you going?"></input>
+      <input class="vacayDetails" id="toDoListInput" type="text" placeholder="What do you want to do?"></input>
+      <input class="vacayDetails" id="reviewInput" type="text" placeholder="Write review here"></input>
+      <input class="vacayDetails" id="completedInput" type="text" placeholder="Did you go here already?"></input>
+      <button id="createButton" type='submit'>Create</button>
+    </form>
+  </div>
+  <div class="vacationContainer">
+    <div class="vacationList">
+      <div>Test 1</div>
+    </div>
+    <div class="completedList">
+      <div> Test 2</div>
+    </div>
+  </div>
+
+  <script src="app/app.js"></script>
 </body>
 </html>
+

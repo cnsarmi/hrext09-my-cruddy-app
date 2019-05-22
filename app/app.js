@@ -11,13 +11,22 @@
 
 //localStorage interaction function
 //get item
+
+
+/////////// 
 var getItem = function(key) {
-  return window.localStorage.getItem(key);
+  return window.localStorage.getItem(key); // returns key's value, or null if key does not exist
 }
 
 //create
 var createItem = function(key, value) {
-  return window.localStorage.setItem(key, value);
+  if(getItem(key) === null){
+    var arr = [];
+  } else{
+    var arr = JSON.parse(window.localStorage[key])
+  }
+  arr.push(value);
+  return window.localStorage.setItem(key, JSON.stringify(arr));
 }
 
 //update
