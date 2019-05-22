@@ -14,33 +14,25 @@ Create Read Update and Delete framework using JS
 - [ ] Item that I added goes here...
 
 Notes:
-- Create an app that you can store vacation plans and mark them as completed when done
+- Create a bucket list app
 
 Players {
-	People going on vacation
-	Where you want to go
-	Date
-	What you want to do there
-	Is it completed
+	Person creating the bucketlist
 }
 
 - Potential names {
-    Your Getaway Checklist
-    My Vacation
-    Your Vacation
-    Your Vacation, Your Way
-    My Travel Plan
+    My Bucketlist
 }
 
 - Where to store data?
-	- Data will consist of vacation plans that will be stored into the localStorage
+	- Data will consist of a list of things the person wants to do or accomplish
 
 - How to capture data?
-	- Forms will be on the browser where you can input the different details of your vacation plan
+	- Forms will be on the browser  where user can input new items to put on bucketlist
 
 - How to modify data?
-	- You can update your vacation plans by click on the specific vacation
+	- You can update/delete any item from your bucketlist
 
 - How to view data?
-	- Displays a vacation plan of how long vacation will be, flight details, hotel details, and transportation costs
+	- Displays a list of all the items on user's bucketlist
 
