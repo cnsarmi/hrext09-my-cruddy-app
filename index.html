@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HREXT09 R00lz!</title>
+  <title>My Bucket List</title>
+  <link rel="stylesheet" href="css/style.css">
   <script
           src="https://code.jquery.com/jquery-3.3.1.js"
           integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -10,31 +11,55 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
 </head>
 <body>
-  <div class="header">
-    <h1>Vacation Checklist</h1>
+  <div>
+    <h1>My Bucket List</h1>
   </div>
-  <div class="formContainer">
-    <form class="vacationPlan">
-      <h4>What are you vacation details?</h4>
-      <input class="vacayDetails" id="peopleInput" type="number" placeholder="How many people?"></input>
-      <input class="vacayDetails" id="dateInput" type="text" placeholder="date (MM-DD-YYYY)"></input>
-      <input class="vacayDetails" id="locationInput" type="text" placeholder="Where are you going?"></input>
-      <input class="vacayDetails" id="toDoListInput" type="text" placeholder="What do you want to do?"></input>
-      <input class="vacayDetails" id="reviewInput" type="text" placeholder="Write review here"></input>
-      <input class="vacayDetails" id="completedInput" type="text" placeholder="Did you go here already?"></input>
-      <button id="createButton" type='submit'>Create</button>
-    </form>
-  </div>
-  <div class="vacationContainer">
-    <div class="vacationList">
-      <div>Test 1</div>
-    </div>
-    <div class="completedList">
-      <div> Test 2</div>
-    </div>
+<div class="main">
+  <div class="addContainer">
+    <button onclick="addToList()">Add To You BucketList</button><br>
+    <input id="add" type="text" placeholder="Add to BucketList">
   </div>
 
-  <script src="app/app.js"></script>
-</body>
+  <div class="modifyContainer">
+    <button onclick="modifyList()">Modify Your Bucketlist</button><br></b>
+    <input id="modifyNumber" type="number" placeholder="Index">
+    <input id="modifyList" type="text" placeholder="Updated List">
+  </div>
+
+  <div>
+    <button onclick="markCompleted()">Completed</button><br>
+    <input id="toggleInput" type="number" placeholder="position..">
+  </div>
+
+   <ul class="bucketlist"><br>
+  </ul>
+
+</div>
+  <div class="data-container"></div>
+ <script src="app/app.js"></script>
+ </body>
 </html>
 
+  <!--
+√ create container
+√ create button
+√ input field
+√ container to display text
+√ update button(or maybe click on the container item)
+√ delete button
+container for the response-feedback (start with alert)
+-->
+
+<!-- <div class="container-main">
+  <header>My Cruddy App</header>
+  <div class="container-form">
+    <input type="text" class="input-key" placeholder="enter key">
+    <input type="text" class="input-value" placeholder="enter value">
+    <button class="btn-add">Submit</button>
+    <button class="btn-update">Update</button>
+    <button class="btn-delete">Delete</button>
+    <button class="btn-clear">Clear</button>
+  </div>
+  <div class="container-data"></div>
+</div>
+ -->
