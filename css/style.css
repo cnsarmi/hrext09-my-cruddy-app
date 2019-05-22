@@ -1,5 +1,30 @@
-/*
-  input boxes
-  buttons
-*/
+html {
+	background-color: skyblue;
+}
 
+h1 {
+	display: flex;
+	justify-content: center;
+	border-style: inset;
+	background-color: lightgray;
+	margin: auto;
+	font-size: 40px;
+	width: 25%;
+
+}
+
+.container {
+  display: flex;
+  width: 350px;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: lightpink;
+  margin-top: 15px;
+}
+
+.listContainer {
+  background-color: lightyellow;
+  width: 500px;
+  margin: auto;
+}

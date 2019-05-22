@@ -10,56 +10,42 @@
           crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
 </head>
+
 <body>
   <div>
     <h1>My Bucket List</h1>
   </div>
-<div class="main">
-  <div class="addContainer">
-    <button onclick="addToList()">Add To You BucketList</button><br>
-    <input id="add" type="text" placeholder="Add to BucketList">
+
+  <div class="main">
+    <div class="container">
+
+      <div class="addContainer">
+        <button onclick="handler.addTodo()">Add To You BucketList</button><br>
+        <input id="add" type="text" placeholder="Add to BucketList">
+      </div>
+
+      <div class="modifyContainer">
+        <button onclick="handler.modifyTodo()">Modify Your Bucketlist</button><br></b>
+        <input id="modifyNumber" type="number" placeholder="Index">
+        <input id="modifylist" type="text" placeholder="Updated List">
+      </div>
+
+      <div class="completeContainer">
+        <button onclick="handler.toggleCompleted()">Completed</button><br>
+        <input id="toggleInput" type="number" placeholder="Index">
+      </div>
+
+    </div>
+
+    <div class="listContainer">
+       <ul class="bucketlist"><br>
+      </ul>
+    </div>
+
   </div>
-
-  <div class="modifyContainer">
-    <button onclick="modifyList()">Modify Your Bucketlist</button><br></b>
-    <input id="modifyNumber" type="number" placeholder="Index">
-    <input id="modifyList" type="text" placeholder="Updated List">
-  </div>
-
-  <div>
-    <button onclick="markCompleted()">Completed</button><br>
-    <input id="toggleInput" type="number" placeholder="position..">
-  </div>
-
-   <ul class="bucketlist"><br>
-  </ul>
-
-</div>
-  <div class="data-container"></div>
- <script src="app/app.js"></script>
+  <script src="app/app.js"></script>
  </body>
 </html>
 
-  <!--
-√ create container
-√ create button
-√ input field
-√ container to display text
-√ update button(or maybe click on the container item)
-√ delete button
-container for the response-feedback (start with alert)
--->
 
-<!-- <div class="container-main">
-  <header>My Cruddy App</header>
-  <div class="container-form">
-    <input type="text" class="input-key" placeholder="enter key">
-    <input type="text" class="input-value" placeholder="enter value">
-    <button class="btn-add">Submit</button>
-    <button class="btn-update">Update</button>
-    <button class="btn-delete">Delete</button>
-    <button class="btn-clear">Clear</button>
-  </div>
-  <div class="container-data"></div>
-</div>
- -->
+
