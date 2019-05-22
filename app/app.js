@@ -1,80 +1,95 @@
-/*
+var todoList = {
+  todos: [],
+  addTodo: function(todoText) {
+    this.todos.push({
+      todoText: todoText,
+      completed: false
+    });
+  },
+  modifyTodo: function(pos, todoText) {
+    this.todos[pos].todoText = todoText;
+  },
+  deleteTodo: function(pos) {
+    this.todos.splice(pos, 1);
+  },
+  toggleCompleted: function(pos) {
+    var todo = this.todos[pos];
+    todo.completed = !todo.completed;
+  },
+};
 
- ### Basic Reqs
-- [ ] Where to store data? (localstorage)
-- [ ] How to caputure data? (web form)
-- [ ] How to modify data? (update action, delete action)
-- [ ] How to view data? (style?)
-- [ ] UI/UX considerations (how are we going to use this)
+var handler = {
+ addTodo: function() {
+  var addInput = document.getElementById('addTask');
+    todoList.addTodo(addInput.value);
+    const keyInput = addInput.value;
+    const valInput = addInput.value;
 
-*/
-
-//localStorage interaction function
-//get item
-
-
-/////////// 
-var getItem = function(key) {
-  return window.localStorage.getItem(key); // returns key's value, or null if key does not exist
-}
-
-//create
-var createItem = function(key, value) {
-  if(getItem(key) === null){
-    var arr = [];
-  } else{
-    var arr = JSON.parse(window.localStorage[key])
-  }
-  arr.push(value);
-  return window.localStorage.setItem(key, JSON.stringify(arr));
-}
-
-//update
-var updateItem = function(key, value) {
-  return window.localStorage.setItem(key, value);
-}
-
-//delete
-var deleteItem = function(key) {
-  return window.localStorage.removeItem(key);
-}
-
-//clear everything
-var clearEverything = function() {
-  return window.localStorage.clear();
-}
-
-var keyExists = function(key) {
-  var currentValue = getItem(key);
-  return currentValue !== null;
-}
-
-
-///////////////////////////////////////////
-//event handlers for the buttons and ... possibly the inputboxes
-  //preventdefault on button clicks
-$(document).ready(function() {
-  $('#createButton').click(function(event) {
-    event.preventDefault();
-
-    var currentKey = $("#keyInput").val();
-    var currentValue = $("#valueInput").val();
-    if (keyExists(currentKey)) {
-      //current key exists, do something error-handle-y
-    } else {
-      createItem(currentKey, currentValue);
+    if(keyInput && valInput) {
+      localStorage.setItem(keyInput, valInput);
     }
-  });
+    //localStorage.getItem(keyInput, valInput)
 
-  $('#updateButton').click(function(event) {
-    event.preventDefault();
+    addInput.value = '';
+    listTodos.displayTodos();
+ },
+ modifyTodo: function() {
+  var modifyPos = document.getElementById('modifyPosition');
+  var modifyInput = document.getElementById('modifyTask')
+    todoList.modifyTodo(modifyPos.valueAsNumber, modifyInput.value);
+    modifyPos.value = '';
+    modifyInput.value = '';
+    listTodos.displayTodos();
+  },
+  deleteTodo: function(pos) {
+    todoList.deleteTodo(pos);
+    listTodos.displayTodos();
+  },
+ toggleCompleted: function() {
+  var toggle = document.getElementById('toggleInput');
+  todoList.toggleCompleted(toggle.valueAsNumber);
+  toggle.value = '';
+  listTodos.displayTodos();
+ },
+};
 
-    var currentKey = $("#keyInput").val();
-    var currentValue = $("#valueInput").val();
-    if (keyExists(currentKey)) {
-      updateItem(currentKey, currentValue);
-    } else {
-      //current key doesnt exist, do stuff
+var listTodos = {
+  displayTodos: function() {
+   var todoUl = document.querySelector('ul');
+   todoUl.innerHTML = '';
+    for(let i = 0; i < todoList.todos.length; i++) {
+      var todoLi = document.createElement('li');
+      var todo = todoList.todos[i];
+      var completedTodo = '';
+
+      if(todo.completed === true) {
+        completedTodo = '(√) ' + todo.todoText;
+      }
+      else {
+        completedTodo = '( ) ' + todo.todoText;
+      }
+      todoLi.id = i;
+      todoLi.textContent = completedTodo;
+      todoLi.appendChild(this.cdBtn());
+      todoUl.appendChild(todoLi);
     }
+  },
+  cdBtn: function() {
+    var deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Remove';
+    deleteBtn.className = 'deleteBtn';
+    return deleteBtn;
+  },
+  setEvents: function() {
+  var todoUl = document.querySelector('ul');
+
+  todoUl.addEventListener('click', function(event) {
+   var clicked = event.target;
+   if(clicked.className === 'deleteBtn') {
+    handler.deleteTodo(parseInt(clicked.parentNode.id));
+   }
   });
-});
+ }
+};
+
+listTodos.setEvents();
