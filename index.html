@@ -13,26 +13,31 @@
 
 <body>
   <div>
-    <h1>My Bucket List</h1>
+    <h1>My Simple Bucket List</h1>
   </div>
 
   <div class="main">
     <div class="container">
 
       <div class="addContainer">
-        <button onclick="addToList()">Add To You BucketList</button><br>
+        <button id="createButton" type="submit">Add To Your BucketList</button><br>
         <input id="add" type="text" placeholder="Add to BucketList">
       </div>
 
-      <div class="modifyContainer">
-        <button onclick="modifyList()">Modify Your Bucketlist</button><br></b>
-        <input id="modifyNumber" type="number" placeholder="Index">
-        <input id="modifylist" type="text" placeholder="Updated List">
+      <div class="updateContainer">
+        <button id="updateButton" type="submit">Update Your Bucketlist</button><br></b>
+        <input id="updateItem" type="text" placeholder="Item to be Updated">
+        <input id="updateList" type="text" placeholder="Updated Item">
       </div>
 
       <div class="completeContainer">
-        <button onclick="markCompleted()">Completed</button><br>
-        <input id="toggleInput" type="number" placeholder="Index">
+        <button id="compeltedButton" type="submit">Completed</button><br>
+        <input id="completedItem" type="text" placeholder="Item">
+      </div> 
+
+      <div class="deleteContainer">
+        <button id="deleteButton" type="submit">Delete From Your BucketList</button><br>
+        <input id="delete" type="text" placeholder="Item to be Deleted">
       </div>
 
     </div>

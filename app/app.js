@@ -1,95 +1,131 @@
-var todoList = {
-  todos: [],
-  addTodo: function(todoText) {
-    this.todos.push({
-      todoText: todoText,
-      completed: false
-    });
-  },
-  modifyTodo: function(pos, todoText) {
-    this.todos[pos].todoText = todoText;
-  },
-  deleteTodo: function(pos) {
-    this.todos.splice(pos, 1);
-  },
-  toggleCompleted: function(pos) {
-    var todo = this.todos[pos];
-    todo.completed = !todo.completed;
-  },
-};
+/*
+ ### Basic Reqs
+- [ ] Where to store data? (localstorage)
+- [ ] How to caputure data? (web form)
+- [ ] How to modify data? (update action, delete action)
+- [ ] How to view data? (style?)
+- [ ] UI/UX considerations (how are we going to use this)
+*/
 
-var handler = {
- addTodo: function() {
-  var addInput = document.getElementById('addTask');
-    todoList.addTodo(addInput.value);
-    const keyInput = addInput.value;
-    const valInput = addInput.value;
+//localStorage interaction function
+//get item
+var getItem = function(key) {
+  return window.localStorage.getItem(key);
+}
 
-    if(keyInput && valInput) {
-      localStorage.setItem(keyInput, valInput);
+
+//delete
+var deleteItem = function(key) {
+  return window.localStorage.removeItem(key);
+}
+
+//clear everything
+var clearEverything = function() {
+  return window.localStorage.clear();
+}
+
+var keyExists = function(key) {
+  var currentValue = getItem(key);
+  return currentValue !== null;
+}
+
+//Creates item
+var addToList = function(key, value) {
+  return window.localStorage.setItem(key, value);
+}
+
+//Updates item
+var updateList = function(key, value) {
+  deleteItem(String(key))
+  return window.localStorage.setItem(value, value);
+}
+
+var markCompleted = function(value) {
+  alert("You completed: " + value + "!")
+  updateList(value, (value + " COMPLETED"))
+}
+
+var showList = function() {
+  var list = document.querySelector('ul');
+  list.innerHTML = null;
+  for (var i = 0; i < window.localStorage.length; i++) {
+    var element = localStorage.key(i)
+    var itemList = document.createElement('li');
+    var item = localStorage.getItem(element);
+
+
+    itemList.textContent = item;
+    list.appendChild(itemList);
+  }
+}
+
+clearEverything()
+
+// ///////////////////////////////////////////
+// event handlers for the buttons and ... possibly the inputboxes
+//   preventdefault on button clicks
+$(document).ready(function() {
+
+  $("#createButton").click(function(event) {
+    event.preventDefault();
+    var currentValue = $("#add").val();
+    
+    if (keyExists(currentValue)) {
+      //current key exists, do something error-handle-y
+      alert("Item already on bucket list")
+    } else {
+      addToList(currentValue, currentValue);
     }
-    //localStorage.getItem(keyInput, valInput)
+    showList();
 
-    addInput.value = '';
-    listTodos.displayTodos();
- },
- modifyTodo: function() {
-  var modifyPos = document.getElementById('modifyPosition');
-  var modifyInput = document.getElementById('modifyTask')
-    todoList.modifyTodo(modifyPos.valueAsNumber, modifyInput.value);
-    modifyPos.value = '';
-    modifyInput.value = '';
-    listTodos.displayTodos();
-  },
-  deleteTodo: function(pos) {
-    todoList.deleteTodo(pos);
-    listTodos.displayTodos();
-  },
- toggleCompleted: function() {
-  var toggle = document.getElementById('toggleInput');
-  todoList.toggleCompleted(toggle.valueAsNumber);
-  toggle.value = '';
-  listTodos.displayTodos();
- },
-};
+});
 
-var listTodos = {
-  displayTodos: function() {
-   var todoUl = document.querySelector('ul');
-   todoUl.innerHTML = '';
-    for(let i = 0; i < todoList.todos.length; i++) {
-      var todoLi = document.createElement('li');
-      var todo = todoList.todos[i];
-      var completedTodo = '';
+  $("#updateButton").click(function(event) {
+    event.preventDefault();
 
-      if(todo.completed === true) {
-        completedTodo = '(√) ' + todo.todoText;
-      }
-      else {
-        completedTodo = '( ) ' + todo.todoText;
-      }
-      todoLi.id = i;
-      todoLi.textContent = completedTodo;
-      todoLi.appendChild(this.cdBtn());
-      todoUl.appendChild(todoLi);
+    var oldItem = $("#updateItem").val();
+    var newItem = $("#updateList").val();
+
+    if (newItem === '') {
+      alert("Please enter the new item");
+    } else if (keyExists(oldItem)){
+      updateList(oldItem, newItem);
+    } else {
+      //current key doesnt exist, do stuff
+      alert("This item doesn\'t exist!")
     }
-  },
-  cdBtn: function() {
-    var deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Remove';
-    deleteBtn.className = 'deleteBtn';
-    return deleteBtn;
-  },
-  setEvents: function() {
-  var todoUl = document.querySelector('ul');
 
-  todoUl.addEventListener('click', function(event) {
-   var clicked = event.target;
-   if(clicked.className === 'deleteBtn') {
-    handler.deleteTodo(parseInt(clicked.parentNode.id));
-   }
+    showList()
+
   });
- }
-};
 
-listTodos.setEvents();
+  $("#compeltedButton").click(function(event) {
+    event.preventDefault();
+
+    var completedItem = $("#completedItem").val();
+
+    if (!keyExists(completedItem)) {
+      alert("This item doesn\'t exist!")
+    } else {
+      markCompleted(completedItem)
+    }
+    showList()
+    console.log(localStorage)
+  });
+
+  $("#deleteButton").click(function(event) {
+    event.preventDefault();
+
+    var deletedItem = $("#delete").val();
+
+    if (!keyExists(deletedItem)) {
+      alert("this item doesn\'t exist!")
+    } else {
+      deleteItem(deletedItem)
+    }
+    showList();
+  });
+
+  
+
+});
